@@ -1,0 +1,13 @@
+{
+  "name": "mishequn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "master.js",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "puppeteer": "1.19.0",
+    "superagent": "5.0.5"
+  },
+  "template": "template0",
+  "browserTabs": 6
+}
