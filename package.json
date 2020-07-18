@@ -4,7 +4,7 @@
   "description": "",
   "main": "master.js",
   "dependencies": {
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "puppeteer": "1.19.0",
     "superagent": "5.0.5"
   },
