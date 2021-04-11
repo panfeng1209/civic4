@@ -1,0 +1,53 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+        - cron: '*/40 * * * * ' # 每40分钟运行一次
+jobs:
+  build_on_linux_16:
+    runs-on: ubuntu-16.04
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        node-version: [10.x, 11.x, 14.x]
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: node master github
+  build_on_linux_18:
+    runs-on: ubuntu-18.04
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+    - uses: actions/checkout@master
+      with:
+        persist-credentials: false 
+        fetch-depth: 0
+    - name: Create local changes
+      run: |
+        echo "update" >> log1.log
+        git add .
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@master
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: node master github
