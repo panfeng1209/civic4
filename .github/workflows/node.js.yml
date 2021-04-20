@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   schedule:
-        - cron: '*/40 * * * * ' # 每40分钟运行一次
+        - cron: '*/60 * * * * ' # 每40分钟运行一次
 jobs:
   build_on_linux_16:
     runs-on: ubuntu-16.04
@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: node master github
+    - run: node index github
   build_on_linux_18:
     runs-on: ubuntu-18.04
     timeout-minutes: 30
@@ -44,10 +44,4 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: node master github
+
