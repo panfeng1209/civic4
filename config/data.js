@@ -5,6 +5,11 @@ module.exports = {
         "http://www.mishequn.xyz/page/3/",
         "http://www.mishequn.xyz/page/4/",
         "http://www.mishequn.xyz/page/5/",
+        
+        "http://hali.carenginehub.com/page/2/",
+        "http://hali.carenginehub.com/page/3/",
+        "http://hali.carenginehub.com/page/4/",
+        "http://hali.carenginehub.com/page/5/",
 
         "http://hawishub.com/page/2/",
         "http://hawishub.com/page/3/",
@@ -81,4 +86,3 @@ module.exports = {
     ],
     selector: '.post-title'
 }
-
